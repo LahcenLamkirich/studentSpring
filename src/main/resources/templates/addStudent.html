@@ -12,23 +12,23 @@
         <form th:class="m-lg-5" method="get" th:action="@{save}">
         <div class="mb-3 mt-3 col-3">
             <label for="nomEtudiant" class="form-label">Nom</label>
-            <input type="text" class="form-control " id="nomEtudiant" name="name">
+            <input type="text" class="form-control " id="nomEtudiant" name="name" th:value="${student.getNom()}">
         </div>
         <div class="mb-3 mt-3 col-3">
             <label for="prenomEtudiant" class="form-label">Prenom</label>
-            <input type="text" class="form-control " id="prenomEtudiant" name="prenom">
+            <input type="text" class="form-control " id="prenomEtudiant" name="prenom" th:value="${student.getPrenom()}">
         </div>
         <div class="mb-3 mt-3 col-3">
             <label for="emailEtudiant" class="form-label">Email</label>
-            <input type="text" class="form-control " id="emailEtudiant" name="email">
+            <input type="text" class="form-control " id="emailEtudiant" name="email" th:value="${student.getEmail()}">
         </div>
         <div class="mb-3 mt-3 col-3">
             <label for="dateNaissance" class="form-label">Date de Naissance</label>
-            <input type="date" class="form-control" id="dateNaissance" name="dateNaissance">
+            <input type="date" class="form-control" id="dateNaissance" name="dateNaissance" th:value="${student.getDateNaissance()}">
         </div>
         <div class="mb-3 mt-3 col-3">
             <label for="genreEtudiant" class="form-label">Genre </label>
-            <input list="genres" class="form-control " id="genreEtudiant" name="genre">
+            <input list="genres" class="form-control" id="genreEtudiant" name="genre" th:value="${student.getGenre()}">
             <datalist id="genres">
                 <option value="MASCULIN">
                 <option value="FEMININ">
@@ -36,7 +36,7 @@
         </div>
         <div>
             <label for="onRegle" class="form-label">On Regle </label>
-            <input type="checkbox" id="onRegle" name="regle">
+            <input type="checkbox" id="onRegle" name="regle" th:checked="${student.getIsOnRegle()}">
         </div>
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
