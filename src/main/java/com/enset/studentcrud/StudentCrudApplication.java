@@ -21,7 +21,7 @@ public class StudentCrudApplication {
         SpringApplication.run(StudentCrudApplication.class, args);
     }
 
-    @Bean
+    //@Bean
     CommandLineRunner start() {
         return args -> {
             repository.save(new Student(null,"Lamkirich", "Lahcen","lahcen.lamkirich@gmail.com",new Date(), Genre.MASCULIN,true));
