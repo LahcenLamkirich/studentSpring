@@ -33,14 +33,15 @@ public class studentController {
     }
 
     @GetMapping("/addStudent")
-    public String addStudent(Model model,Student student) {
-        model.addAttribute("student", student);
+    public String addStudent(Model model) {
+        model.addAttribute("student", new Student());
         return "addStudent";
     }
 
     @GetMapping("/save")
     public String save(Model model, Student student){
         studentRepo.save(student);
+        System.out.println("The student is " + student);
         return "redirect:/";
     }
 
