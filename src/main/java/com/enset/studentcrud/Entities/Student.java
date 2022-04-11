@@ -4,11 +4,9 @@ package com.enset.studentcrud.Entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -23,15 +21,12 @@ public class Student {
     private String nom ;
     private String prenom ;
     private String email ;
+
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateNaissance ;
 
-    enum Genre {
-        Masculin,
-        Feminin
-    }
-
     private Genre genre ;
-
     private Boolean isOnRegle ;
 
 }
