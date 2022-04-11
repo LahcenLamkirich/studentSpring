@@ -25,6 +25,7 @@ public class StudentCrudApplication {
     CommandLineRunner start() {
         return args -> {
             repository.save(new Student(1L,"Lamkirich", "Lahcen","lahcen.lamkirich@gmail.com",new Date(), Genre.MASCULIN,true));
+            repository.save(new Student(2L,"Saadi", "Maria","maria01@gmail.com",new Date(), Genre.FEMININ,true));
         };
     }
 
