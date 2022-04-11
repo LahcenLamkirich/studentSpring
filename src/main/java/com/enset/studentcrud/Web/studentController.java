@@ -2,10 +2,13 @@ package com.enset.studentcrud.Web;
 
 import com.enset.studentcrud.Entities.Student;
 import com.enset.studentcrud.Repositories.studentRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -21,10 +24,20 @@ public class studentController {
     }
 
     @GetMapping("")
-    public String StudentList(Model model){
-        List<Student> students = studentRepo.findAll();
-        model.addAttribute("students", students);
+    public String StudentList(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
+                              @RequestParam(name = "size", defaultValue = "5") int size,
+                              @RequestParam(name = "keyword", defaultValue = "") String keyword){
+        Page<Student> students = studentRepo.findByNomContains(keyword, PageRequest.of(page, size));
+        model.addAttribute("students", students.getContent());
+        model.addAttribute("pages", new int[students.getTotalPages()]);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("keyword", keyword);
         return "Home";
+    }
+
+    @GetMapping("/addStudent")
+    public String addStudent(  ) {
+        return "addStudent";
     }
 
 }
