@@ -45,4 +45,11 @@ public class studentController {
         return "redirect:/";
     }
 
+    @GetMapping("/edit")
+    public String edit(Model model, Student student){
+        studentRepo.findById(student.getId());
+        return "EditStudent";
+    }
+
+
 }
