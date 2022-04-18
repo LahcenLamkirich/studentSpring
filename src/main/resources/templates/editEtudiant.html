@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template1">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier un Student</title>
+
+</head>
+<body>
+<div layout:fragment="content1">
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header">Modifier Student <label th:text="${Student.nom}"></label></div>
+            <div class="card-body">
+                <form method="post" th:action="@{/admin/save(page=${page},keyword=${keyword})}">
+                    <div class="form-group mt-2">
+                        <label class="control-label">ID</label>
+                        <label class="control-label" th:text="${Student.id}"></label>
+                        <input class="form-control" name="id" type="hidden" th:value="${Student.id}">
+                    </div>
+                    <div class="form-group mt-2">
+                        <label class="control-label">Nom</label>
+                        <input class="form-control" name="nom" type="text" th:value="${Student.nom}">
+                        <span th:errors="${Student.nom}" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label class="control-label">Prenom</label>
+                        <input class="form-control" name="prenom" type="text" th:value="${Student.prenom}">
+                        <span th:errors="${Student.prenom}" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label class="control-label">Date de Naissance</label>
+                        <input class="form-control" name="dateNaissance" type="date"
+                               th:value="${Student.dateNaissance}">
+                        <span th:errors="${Student.dateNaissance}" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label class="control-label">Email</label>
+                        <input class="form-control" name="email" type="text" th:value="${Student.email}">
+                        <span th:errors="${Student.email}" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label class="control-label">Régle</label>
+                        <input name="regle" type="checkbox" th:checked="${Student.isOnRegle}">
+
+                        <span th:errors="${Student.isOnRegle}" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group mt-2">
+                        <select name="genre">
+                            <option th:each="optionGender:${T(com.enset.studentcrud.Entities.Genre).values()}" th:value="${optionGender}" th:text="${optionGender} " th:selected="${Student.genre}"> </option>
+                        </select>
+
+                    </div>
+
+                    <div class="mt-4">
+                        <a class="btn btn-outline-primary"
+                           th:href="@{/user/index(id=${Student.id}, keyword=${keyword}, page=${page})}">
+                            <i class="fas fa-arrow-alt-circle-left"></i>
+                        </a>
+                        <button type="submit" class="btn btn-outline-primary"><i class="fas fa-save"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
 import java.util.Date;
@@ -21,7 +20,12 @@ public class StudentCrudApplication {
         SpringApplication.run(StudentCrudApplication.class, args);
     }
 
-    //@Bean
+//    @Bean
+//    BCryptPasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
+
+    @Bean
     CommandLineRunner start() {
         return args -> {
             repository.save(new Student(null,"Lamkirich", "Lahcen","lahcen.lamkirich@gmail.com",new Date(), Genre.MASCULIN,true));
@@ -30,5 +34,20 @@ public class StudentCrudApplication {
             repository.save(new Student(null, "Soulami", "Nouhaila", "soulami@gmail.com", new Date(), Genre.FEMININ, true));
         };
     }
+//
+//    @Bean
+//    CommandLineRunner saveUsers(SecurityService securityService) {
+//        return args -> {
+//            securityService.saveNewUser("Lahcen", "1234", "1234");
+//            securityService.saveNewUser("Ahmed", "1234", "1234");
+//
+//            securityService.saveNewRole("USER", "");
+//            securityService.saveNewRole("ADMIN", "");
+//
+//            securityService.addRoleToUser("Lahcen", "USER");
+//            securityService.addRoleToUser("Lahcen", "ADMIN");
+//            securityService.addRoleToUser("Ahmed", "USER");
+//        };
+//    }
 
 }
