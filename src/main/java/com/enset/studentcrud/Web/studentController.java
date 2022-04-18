@@ -98,7 +98,7 @@ public class studentController {
         return etudiantRepository.findAll();
     }
 
-    @GetMapping("/admin/formEtudiants")
+    @GetMapping("/admin/formStudents")
     public String formEtudiants(Model model) {
         model.addAttribute("Student", new Student());
         return "formEtudiants";
